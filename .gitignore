@@ -1,0 +1,13 @@
+vendor
+composer.lock
+Dockerfile
+docker-compose.yaml
+.git
+.idea
+package.xml
+.php-cs-fixer.cache
+.phpunit.result.cache
+var
+tools
+tests/clover.xml
+.phpunit.cache

@@ -1,0 +1,49 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Input\ArgvInput;
+//use Symfony\Component\Console\Application;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Pioniro\WrapperBundle\WrapperBundle;
+
+require __DIR__.'/../vendor/autoload.php';
+
+class Kernel extends \Symfony\Component\HttpKernel\Kernel
+{
+    private const BUNDLES = [
+        FrameworkBundle::class,
+        WrapperBundle::class
+    ];
+
+    public function registerBundles()
+    {
+        $contents = self::BUNDLES;
+        foreach ($contents as $class) {
+            yield new $class();
+        }
+    }
+
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        $loader->load(function (ContainerBuilder $container) use ($loader) {
+
+            if (!$container->hasDefinition('kernel')) {
+                $container->register('kernel', static::class)
+                    ->setSynthetic(true)
+                    ->setPublic(true)
+                ;
+            }
+            $loader->load($this->getProjectDir().'/src/config.php', 'php');
+            $container->loadFromExtension('framework', []);
+
+            $container->addObjectResource($this);
+        });
+    }
+}
+
+$kernel = new Kernel('dev', true);
+$application = new Application($kernel);
+$application->run(new ArgvInput());

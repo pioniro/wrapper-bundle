@@ -1,0 +1,50 @@
+{
+    "name": "pioniro/wrapper-bundle",
+    "description": "Wraps your symfony services",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Pioniro\\WrapperBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aleksei Fedorov",
+            "email": "ppioniro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "symfony/http-kernel": "^4.4||^5.0||^6.0||^7.0",
+        "symfony/config": "^4.4||^5.0||^6.0||^7.0",
+        "symfony/dependency-injection": "^4.4||^5.0||^6.0||^7.0",
+        "doctrine/annotations": "^1.14||^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.14",
+        "phpstan/phpstan": "^1.2||^2.0",
+        "phpunit/phpunit": "^9.6",
+        "phpstan/phpstan-symfony": "^1.2||^2.0",
+        "vimeo/psalm": "^4.3"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pioniro\\WrapperBundle\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@phpstan",
+            "@psalm",
+            "@tests"
+        ],
+        "tests": "vendor/bin/phpunit --verbose",
+        "cs-check": "vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
+        "cs-fix": "vendor/bin/php-cs-fixer fix --verbose --diff",
+        "phpstan": "vendor/bin/phpstan analyse",
+        "psalm": "vendor/bin/psalm"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "pioniro/wrapper-example-simple",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aleksei Fedorov",
+            "email": "ppioniro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "symfony/console": "^4.4",
+        "symfony/http-kernel": "^4.4||^5.0||^6.0||^7.0",
+        "symfony/dependency-injection": "^4.4||^5.0||^6.0||^7.0",
+        "pioniro/wrapper": "*",
+        "symfony/framework-bundle": "^4.4"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/code"
+        }
+    ],
+    "minimum-stability": "dev"
+}
