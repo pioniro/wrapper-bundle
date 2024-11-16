@@ -34,7 +34,7 @@ class LogExceptionHandler implements \Pioniro\WrapperBundle\HandlerInterface
 {
     public function __construct(private \Psr\Log\LoggerInterface $logger) {}
 
-    public function handle(callable $next, AnnotationInterface $annotation): callable
+    public function handle(callable $next, array $args, AnnotationInterface $annotation): callable
     {
         return function ($input) use ($next) {
             try{
