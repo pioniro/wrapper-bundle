@@ -9,7 +9,7 @@ use Pioniro\WrapperBundle\HandlerInterface;
 
 class SomeAnnotationHandler implements HandlerInterface
 {
-    public function handle(callable $next, AnnotationInterface $annotation): callable
+    public function handle(callable $next, array $args, AnnotationInterface $annotation): callable
     {
         \assert($annotation instanceof SomeAnnotation);
         dump(__CLASS__ . ':: BEFORE');

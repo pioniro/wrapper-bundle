@@ -21,11 +21,5 @@
         "pioniro/wrapper": "*",
         "symfony/framework-bundle": "^4.4"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/code"
-        }
-    ],
     "minimum-stability": "dev"
 }

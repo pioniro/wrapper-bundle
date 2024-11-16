@@ -101,4 +101,5 @@ You can create as many handlers as you want and use them in your services.
 - Handlers are not called for private, static or final methods.
 - Handlers are not called for methods of the final classes.
 - Handlers are not called for methods of the classes that are not in the container.
-- May occur strange errors if you use `static` keyword
+- May occur strange errors if you use `static` keyword (for example in the Command) in the annotated hierarchy.
+- Using other annotations in the same class may lead to unexpected behavior (e.g. if you use `@Route` or `@Template` annotations in the same class, these annotation may not work as expected)

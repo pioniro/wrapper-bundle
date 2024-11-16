@@ -37,6 +37,7 @@ PHP;
     <modificator> function <methodName>(<methodParameters>) <methodReturnType>
     {
         $f = fn() => parent::<methodName>(<methodArguments>);
+        $args = func_get_args();
 
         foreach ($this->__handlers['<methodName>'] ?? [] as &$h) {
             [$handler, $annotation] = $h;
@@ -44,7 +45,7 @@ PHP;
                 $annotation = unserialize($annotation);
                 $h[1] = $annotation;
             }
-            $f = $handler->handle($f, $annotation);
+            $f = $handler->handle($f, $args, $annotation);
         }
         return $f();
     }
@@ -54,9 +55,10 @@ PHP;
     public function <methodName>(<methodParameters>) <methodReturnType>
     {
         $f = fn() => parent::<methodName>(<methodArguments>);
+        $args = func_get_args();
 
         foreach ($this->__handlers['<methodName>'] ?? [] as [$handler, $annotation]) {
-            $f = $handler->handle($f, $annotation);
+            $f = $handler->handle($f, $args, $annotation);
         }
         $f();
     }
