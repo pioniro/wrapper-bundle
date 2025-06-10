@@ -2,7 +2,7 @@ WrapperBundle
 =====
 This is a wrapper bundle for the [Symfony](https://symfony.com) framework.
 
-Main goal of this bundle is to provide a simple way to create a wrappers for the services.
+The main goal of this bundle is to provide a simple way to create a wrappers for the services.
 
 Under the hood, this bundle performs code generation similar to how Doctrine does for entity proxying.
 
@@ -34,7 +34,7 @@ class LogExceptionHandler implements \Pioniro\WrapperBundle\HandlerInterface
 {
     public function __construct(private \Psr\Log\LoggerInterface $logger) {}
 
-    public function handle(callable $next, array $args, AnnotationInterface $annotation): callable
+    public function handle(callable $next, string $method, array $args, AnnotationInterface $annotation): callable
     {
         return function ($input) use ($next) {
             try{
@@ -102,4 +102,4 @@ You can create as many handlers as you want and use them in your services.
 - Handlers are not called for methods of the final classes.
 - Handlers are not called for methods of the classes that are not in the container.
 - May occur strange errors if you use `static` keyword (for example in the Command) in the annotated hierarchy.
-- Using other annotations in the same class may lead to unexpected behavior (e.g. if you use `@Route` or `@Template` annotations in the same class, these annotation may not work as expected)
+- Using other annotations in the same class may lead to unexpected behavior (e.g., if you use `@Route` or `@Template` annotations in the same class, these annotations may not work as expected)

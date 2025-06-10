@@ -51,7 +51,7 @@ class Handler implements HandlerInterface
         $this->f = $f;
     }
 
-    public function handle(callable $next, array $args, AnnotationInterface $annotation): callable
+    public function handle(callable $next, string $method, array $args, AnnotationInterface $annotation): callable
     {
         return fn () => ($this->f)($next(), $annotation);
     }

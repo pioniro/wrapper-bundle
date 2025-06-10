@@ -45,7 +45,7 @@ PHP;
                 $annotation = unserialize($annotation);
                 $h[1] = $annotation;
             }
-            $f = $handler->handle($f, $args, $annotation);
+            $f = $handler->handle($f, __METHOD__, $args, $annotation);
         }
         return $f();
     }
@@ -58,7 +58,7 @@ PHP;
         $args = func_get_args();
 
         foreach ($this->__handlers['<methodName>'] ?? [] as [$handler, $annotation]) {
-            $f = $handler->handle($f, $args, $annotation);
+            $f = $handler->handle($f, __METHOD__, $args, $annotation);
         }
         $f();
     }

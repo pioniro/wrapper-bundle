@@ -6,7 +6,7 @@ namespace Pioniro\WrapperBundle;
 
 interface HandlerInterface
 {
-    public function handle(callable $next, array $args, AnnotationInterface $annotation): callable;
+    public function handle(callable $next, string $method, array $args, AnnotationInterface $annotation): callable;
 
     public static function handledClass(): string;
 }

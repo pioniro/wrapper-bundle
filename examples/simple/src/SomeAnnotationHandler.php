@@ -9,10 +9,11 @@ use Pioniro\WrapperBundle\HandlerInterface;
 
 class SomeAnnotationHandler implements HandlerInterface
 {
-    public function handle(callable $next, array $args, AnnotationInterface $annotation): callable
+    public function handle(callable $next, string $method, array $args, AnnotationInterface $annotation): callable
     {
         \assert($annotation instanceof SomeAnnotation);
         dump(__CLASS__ . ':: BEFORE');
+        dump($method . ':: METHOD');
         dump(__CLASS__ . ':: passed value:' . $annotation->value);
 
         return function () use ($next) {
