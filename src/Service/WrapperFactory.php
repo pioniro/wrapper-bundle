@@ -57,7 +57,12 @@ PHP;
         $f = fn() => parent::<methodName>(<methodArguments>);
         $args = func_get_args();
 
-        foreach ($this->__handlers['<methodName>'] ?? [] as [$handler, $annotation]) {
+        foreach ($this->__handlers['<methodName>'] ?? [] as &$h) {
+            [$handler, $annotation] = $h;
+            if (is_string($annotation)) {
+                $annotation = unserialize($annotation);
+                $h[1] = $annotation;
+            }
             $f = $handler->handle($f, __METHOD__, $args, $annotation);
         }
         $f();
